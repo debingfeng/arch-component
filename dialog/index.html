@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dialog组件</title>
+    <link rel="stylesheet" href="../common/omreset.css">
+    <style>
+
+        .over-layer {
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 350ms;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dialog-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            width: 76%;
+            min-height: 180px;
+            max-height: 250px;
+            border-radius: 6px;
+            background-color: #ffffff;
+        }
+
+        .dialog-container .dialog-title,
+        .dialog-container .dialog-content,
+        .dialog-container .dialog-footer {
+            box-sizing: inherit;
+        }
+
+        .dialog-title {
+            height: 27.778%;
+            padding: 4.5% 0;
+            font-size: 18px;
+            color: #000000;
+            text-align: center;
+            text-shadow: 0 0 1px rgb(0, 0, 0);
+        }
+
+        .dialog-content {
+            flex: 1;
+            padding: 0 6% 4.667%;
+            font-size: 15px;
+            color: #333333;
+            text-align: center;
+        }
+
+        .dialog-footer {
+            position: relative;
+            display: flex;
+            height: 45px;
+            border-bottom-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+
+        .dialog-btn {
+            flex: 1;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            font-size: 17px;
+            color: #333333;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .dialog-btn:active {
+            opacity: 0.8;
+        }
+
+        .dialog-btn-confirm {
+            border-bottom-right-radius: 12px;
+        }
+
+        .dialog-btn-cancel {
+            position: relative;
+            border-bottom-left-radius: 12px;
+        }
+
+        .dialog-btn-cancel:after {
+            content: " ";
+            position: absolute;
+            right: 0;
+            height: 100%;
+            width: 1px;
+            background-color: #dfdfdf;
+            transform: scaleX(0.5);
+        }
+
+        .dialog-footer:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid #dfdfdf;
+            color: #d5d5d6;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+        }
+    </style>
+</head>
+<body>
+
+<button type="button" id="openAlert">打开alert</button>
+<button type="button" id="openDialog">打开dialog</button>
+<!--<div class="over-layer flex-center xtc-dialog">-->
+<!--    <div class="dialog-container">-->
+<!--        <header class="dialog-title flex-center">温馨提示</header>-->
+<!--        <section class="dialog-content">你确认要删这些东西，如果确认就点击是确定，不确认就取消！-->
+<!--            你确认要删这些东西，如果确认就点击是确定，不确认就取消-->
+<!--        </section>-->
+<!--        <section class="dialog-footer">-->
+<!--            &lt;!&ndash;            <section class="dialog-btn">我知道了</section>&ndash;&gt;-->
+<!--            <section class="dialog-btn dialog-btn-cancel">取消</section>-->
+<!--            <section class="dialog-btn dialog-btn-confirm">确认</section>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script src="../utils/util.js"></script>
+<script>
+    var $_dialog = (function () {
+        var initConfig = {
+            title: '温馨提示',
+            content: 'dialog 提示框内容',
+            type: 'confirm',
+            confirmTxt: '确认',
+            confirm: function () {
+
+            },
+            cancelTxt: '取消',
+            cancel: function () {
+
+            }
+        };
+
+        /**
+         * 创建alert
+         */
+        var createDialog = function (config) {
+
+            // Add the main structure element
+            var layer = createElement('div'),
+                dialogContainer = createElement('div'),
+                dialogHeader = createElement('header'),
+                content = createElement('section'),
+                footer = createElement('footer'),
+                btn = createElement('section');
+            // Add style for the main structure element
+            addClass(layer, 'over-layer flex-center xtc-dialog');
+            addClass(dialogContainer, 'dialog-container');
+            addClass(dialogHeader, 'dialog-title flex-center');
+            addClass(content, 'dialog-content');
+            addClass(footer, 'dialog-footer');
+            addClass(btn,'dialog-btn');
+
+            // Add inner text for every structure element
+            dialogHeader.innerText = config.title;
+            content.innerText = config.content;
+            btn.innerText = config.btnTxt;
+            // build dom structure element
+            footer.appendChild(btn);
+            dialogContainer.appendChild(dialogHeader);
+            dialogContainer.appendChild(content);
+            dialogContainer.appendChild(footer);
+            footer.appendChild(btn);
+            layer.appendChild(dialogContainer);
+            document.body.appendChild(layer);
+            if (config.btnHandle && typeof config.btnHandle === 'function') {
+                btn.addEventListener('click',function () {
+                    removeDialog();
+                    config.btnHandle();
+                })
+            }
+            return layer;
+
+
+
+        };
+
+        /**
+         * 创建confirm
+         */
+        function createConfirm(config) {
+            // Add the main structure element
+            var layer = createElement('div'),
+                dialogContainer = createElement('div'),
+                dialogHeader = createElement('header'),
+                content = createElement('section'),
+                footer = createElement('footer');
+            // Add style for the main structure element
+            addClass(layer, 'over-layer flex-center xtc-dialog');
+            addClass(dialogContainer, 'dialog-container');
+            addClass(dialogHeader, 'dialog-title flex-center');
+            addClass(content, 'dialog-content');
+            addClass(footer, 'dialog-footer');
+            var btnCancel = createElement('section'),
+                btnConfirm = createElement('section');
+            addClass(btnCancel,'dialog-btn dialog-btn-cancel');
+            addClass(btnConfirm,'dialog-btn dialog-btn-confirm');
+            dialogHeader.innerText = config.title;
+            content.innerText = config.content;
+            btnCancel.innerText = config.cancelTxt;
+            btnConfirm.innerText = config.confirmTxt;
+
+            footer.appendChild(btnCancel);
+            footer.appendChild(btnConfirm);
+            dialogContainer.appendChild(dialogHeader);
+            dialogContainer.appendChild(content);
+            dialogContainer.appendChild(footer);
+            layer.appendChild(dialogContainer);
+
+            // cancel option
+            btnCancel.addEventListener('click',function () {
+                // 移除处理
+                removeDialog();
+                config.cancel && typeof config.cancel === 'function' &&  config.cancel();
+            });
+
+            // confirm option
+            btnConfirm.addEventListener('click',function () {
+                removeDialog();
+                config.confirm && typeof config.confirm === 'function' &&  config.confirm();
+            });
+
+            document.body.appendChild(layer);
+        }
+        /**
+         * 移除DOM
+         */
+        function removeDialog() {
+            var $xtcDialog = document.querySelector('.xtc-dialog');
+            if ($xtcDialog) {
+                document.body.removeChild($xtcDialog);
+            }
+        }
+        /**
+         * alert
+         */
+        function dialogAlert(config) {
+
+            createDialog(extend({
+                title: '温馨提示',
+                content: 'dialog 提示框内容',
+                type: 'alert',
+                btnTxt: '我知道了',
+                btnHandle: function () {
+
+                }
+            },config));
+        }
+
+        /**
+         * confirm
+         */
+        function dialogConfirm(config) {
+            createDialog(extend(initConfig,config));
+        }
+        return {
+            alert: dialogAlert,
+            confirm: dialogConfirm
+        }
+
+    })();
+
+    document.addEventListener('DOMContentLoaded',function () {
+        document.getElementById('openAlert').addEventListener('click',function () {
+            $_dialog.alert({
+                btnTxt: '温馨提示',
+                btnHandle: function () {
+                    alert('xxxx')
+                }
+            })
+        })
+        document.getElementById('openDialog').addEventListener('click',function () {
+            $_dialog.alert({
+                btnTxt: '温馨提示',
+                confirm: function () {
+                    alert('确认')
+                },
+                cancel: function () {
+                    alert('取消')
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

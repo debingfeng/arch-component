@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>JS-loading</title>
+    <link rel="stylesheet" href="../common/omreset.css">
+    <link rel="stylesheet" href="util.css">
+</head>
+<body>
+<img src="./imgs/loading.gif" alt=""/>
+
+<div class="">
+    <button type="button" id="open">打开loading</button>
+    <button type="button" id="close">关闭loading</button>
+</div>
+
+<!--<div class="over-layer">-->
+<!--    <div class="xtc-load-container">-->
+<!--        <div class="loader"></div>-->
+<!--        <div class="load-content">加载中...</div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script src="loading.js"></script>
+<script>
+    let $ = function (id) {
+        return document.getElementById(id);
+    };
+    $("open").addEventListener("click", function () {
+        $_loading.show();
+    });
+    $("close").addEventListener("click", function () {
+        $_loading.remove();
+    });
+
+    // setTimeout(()=>{
+    //     $_loading.remove();
+    // },3000);
+
+</script>
+</body>
+</html>
