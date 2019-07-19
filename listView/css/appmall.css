@@ -1,0 +1,135 @@
+/* 列表样式 */
+.apps-list {
+    min-height: 150px;
+    /*background-color: white;*/
+}
+.apps-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 78px;
+    background-color: white;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 76%;
+    width: 76%;
+}
+
+.item-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid rgba(218, 218, 218, 1);
+}
+
+.item-info-detail {
+    flex: 0 1 76%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 76%;
+    margin-left: 10px;
+}
+
+.detail-title {
+    font-size: 17px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0;
+    color: #000000;
+}
+
+.detail-desc {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    color: #888888;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.item-btn {
+    width: 18%;
+    flex: 0 0 18%;
+    max-width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    color: #ffaa22;
+    border: solid 1px #ffaa22;
+    border-radius: 24px;
+    background-color: #ffffff;
+    outline: none;
+}
+
+/*单行列表*/
+
+.item-normal {
+
+}
+
+.item-normal-left {
+
+}
+
+.item-title {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+}
+
+.item-title-text {
+
+}
+
+.item-title-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid gainsboro;
+    background-color: #dfdfdf;
+}
+
+.item-detail-desc {
+    display: inline-block;
+    padding-right: 1em;
+    color: #888888;
+    font-size: 14px;
+}
+
+
+@media (min-width: 320px) and (max-width: 360px) {
+    .item-btn {
+        width: 21%;
+        flex: 0 0 21%;
+    }
+}
+
+.btn-install,
+.btn-update {
+    color: #ffaa22;
+    border: solid 1px #ffaa22;
+    border-radius: 25px;
+}
+
+/* 已经安装/已经更新 */
+.btn-installed,
+.btn-updated,
+.btn-uninstalling {
+    color: #999999;
+    border: none;
+}
+
+/* 待安装/待更新 */
+.btn-installing,
+.btn-updating {
+    color: #999999;
+    border: 1px solid #999999;
+}

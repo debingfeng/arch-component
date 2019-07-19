@@ -4,38 +4,69 @@
     /*background-color: white;*/
 }
 
-.apps-list-item {
+/*正常listView*/
+.item {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 78px;
+    padding: 15px 0;
+    font-size: 17px;
     background-color: white;
 }
 
-.item-info {
+.item-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex: 1 1 76%;
-    width: 76%;
 }
 
-.item-icon {
+
+.item-content {
+
+}
+
+.item:after {
+    position: absolute;
+    bottom: 0;
+    content: ' ';
+    height: 1px;
+    width: 100%;
+    transform: scaleY(0.5);
+    background-color: #999999;
+}
+
+.item-normal {
+
+}
+
+.item-header .item-header-image {
     width: 50px;
     height: 50px;
-    border-radius: 12px;
-    border: 1px solid rgba(218, 218, 218, 1);
+    border-radius: 6px;
+    background-color: #999999;
 }
 
-.item-info-detail {
-    flex: 0 1 76%;
+.item-header .item-header-text {
+    display: inline-block;
+    font-size: 17px;
+    padding-left: 0.25em;
+}
+
+.item-header-detail {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    width: 76%;
-    margin-left: 10px;
+    align-items: flex-start;
+    /*flex-wrap: wrap;*/
+    padding-left: 0.25em;
+    overflow: scroll;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.item-image-rounded {
+    border-radius: 50% !important;
 }
 
 .detail-title {
@@ -48,7 +79,6 @@
 
 .detail-desc {
     display: inline-block;
-    width: 100%;
     font-size: 14px;
     color: #888888;
     overflow: hidden;
@@ -56,81 +86,19 @@
     text-overflow: ellipsis;
 }
 
-.item-btn {
-    width: 18%;
-    flex: 0 0 18%;
-    max-width: 120px;
-    height: 30px;
-    line-height: 28px;
-    text-align: center;
-    color: #ffaa22;
-    border: solid 1px #ffaa22;
-    border-radius: 24px;
-    background-color: #ffffff;
-    outline: none;
-}
 
-/*单行列表*/
-
-.item-normal {
-
-}
-
-.item-normal-left {
-
-}
-
-.item-title {
-    display: flex;
-    align-items: center;
-    font-size: 17px;
-}
-
-.item-title-text {
-
-}
-
-.item-title-icon {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 1px solid gainsboro;
-    background-color: #dfdfdf;
-}
-
-.item-detail-desc {
+.item-content .item-content-desc {
     display: inline-block;
     padding-right: 1em;
     color: #888888;
     font-size: 14px;
 }
 
-
-@media (min-width: 320px) and (max-width: 360px) {
-    .item-btn {
-        width: 21%;
-        flex: 0 0 21%;
-    }
+.item-arrow-right {
+    display: inline-block;
+    width: 7px;
+    height: 13px;
+    background: url("../imgs/arrow-right.png") no-repeat;
+    background-size: 100%;
 }
 
-.btn-install,
-.btn-update {
-    color: #ffaa22;
-    border: solid 1px #ffaa22;
-    border-radius: 25px;
-}
-
-/* 已经安装/已经更新 */
-.btn-installed,
-.btn-updated,
-.btn-uninstalling {
-    color: #999999;
-    border: none;
-}
-
-/* 待安装/待更新 */
-.btn-installing,
-.btn-updating {
-    color: #999999;
-    border: 1px solid #999999;
-}

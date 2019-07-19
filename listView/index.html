@@ -10,55 +10,57 @@
     <link rel="stylesheet" href="./css/list.css">
 
     <style>
-        body {
-            /*background-color: gainsboro;*/
-        }
-        .arrow-right {
-            display: inline-block;
-            width: 7px;
-            height: 13px;
-            background: url("imgs/arrow-right.png") no-repeat;
-            background-size: 100%;
-        }
+
     </style>
 </head>
 <body>
 <div class="container">
     <div class="apps-list">
-        <section class="apps-list-item">
-            <section class="item-info">
-                <img src="./imgs/default-icon.png" alt="" class="item-icon"/>
-                <section class="item-info-detail">
+        <!--单行列表-->
+        <section class="item item-normal">
+            <span>单行列表</span>
+            <span class="item-arrow-right"></span>
+        </section>
+
+        <!--带详情的列表-->
+        <section class="item item-detail">
+            <span>带详情单行列表</span>
+            <section>
+                <span class="item-content-desc">详情信息</span>
+                <span class="item-arrow-right"></span>
+            </section>
+        </section>
+
+        <!--带图片的列表-->
+        <section class="item item-normal">
+            <section class="item-header">
+                <img src="./imgs/netease.png" alt="" class="item-header-image">
+                <span class="item-header-text">带详情单行列表</span>
+            </section>
+            <span class="item-arrow-right"></span>
+        </section>
+
+        <!--带图片有详情的列表-->
+        <section class="item item-normal">
+            <section class="item-header">
+                <img src="./imgs/netease.png" alt="" class="item-header-image">
+                <span class="item-header-text">带详情单行列表</span>
+            </section>
+            <section class="item-content">
+                <span class="item-content-desc">详情信息</span>
+                <span class="item-arrow-right"></span>
+            </section>
+        </section>
+
+        <section class="item">
+            <section class="item-header">
+                <img src="./imgs/netease.png" alt="" class="item-header-image item-image-rounded"/>
+                <section class="item-header-detail">
                     <p class="detail-title">神马应用</p>
-                    <span class="detail-desc">此应用很神秘，没有描述你好漂亮你好漂亮</span>
+                    <span class="detail-desc">此应用很神秘，没有描述你好漂亮你好</span>
                 </section>
             </section>
-            <button type="button" class="item-btn">
-                安装
-            </button>
-        </section>
-        <section class="apps-list-item">
-            <p>单行列表</p>
-            <span class="arrow-right"></span>
-        </section>
-
-        <section class="apps-list-item">
-            <p class="item-title">单行列表</p>
-            <section class="item-detail">
-                <span class="item-detail-desc">详细信息</span>
-                <span class="arrow-right"></span>
-            </section>
-        </section>
-
-        <section class="apps-list-item">
-            <section class="item-title">
-                <span class="item-title-icon"></span>
-                <span>描述信息</span>
-            </section>
-            <section class="item-detail">
-                <span class="item-detail-desc">详细信息</span>
-                <span class="arrow-right"></span>
-            </section>
+            <span class="item-arrow-right"></span>
         </section>
     </div>
 </div>
