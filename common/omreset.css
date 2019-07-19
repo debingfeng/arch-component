@@ -1,5 +1,5 @@
 /*! omReset.css v1.0.0 | MIT License | github.com/omwteam/omReset.css */
-html, body, p, ol, ul, li, textarea, h1, h2, h3, h4 {
+html, body, p, ol, ul, textarea, h1, h2, h3, h4 {
     margin: 0;
     padding: 0;
 }
@@ -25,6 +25,8 @@ body {
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
     font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    min-width: 320px;
+    margin: 0 auto;
 }
 
 article, nav, header, section, aside, footer,

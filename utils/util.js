@@ -1,12 +1,11 @@
-var _DOC = document;
 /**
- *创建元素
+ * Create element
  */
 var createElement = function (tag) {
-    return _DOC.createElement(tag);
+    return document.createElement(tag);
 };
 /**
- * 检测样式
+ * Has class
  * @param elements
  * @param cName
  * @returns {boolean}
@@ -15,7 +14,7 @@ var hasClass = (elements, cName) => {
     return !!elements.className.match(new RegExp("(\\s|^)" + cName + "(\\s|$)"));
 };
 /**
- * 添加样式
+ * Add Class
  * @param elements
  * @param cName
  */
@@ -25,7 +24,7 @@ var addClass = (elements, cName) => {
     }
 };
 /**
- * 移除样式
+ * remove Class
  * @param elements
  * @param cName
  */
@@ -35,12 +34,12 @@ var removeClass = (elements, cName) => {
     }
 };
 /**
- * 扩展对象
+ * Extand object
  * @param origin
  * @param target
  * @return {*}
  */
-var extend = function (origin,target){
+var expand = function (origin,target){
     for(var key in target) {
         if(target.hasOwnProperty(key)) {
             origin[key] = target[key];
@@ -48,3 +47,26 @@ var extend = function (origin,target){
     }
     return origin;
 };
+
+/**
+ * Block page scrolling
+ */
+function stopScroll() {
+    // 防止页面股东
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'relative';
+    document.addEventListener('touchmove', function (event) {
+        event.preventDefault();
+        return false;
+    });
+}
+
+/**
+ * Unblock page scrolling
+ */
+function recoverScroll() {
+    document.body.style.overflow = 'visible';
+    document.body.style.position = 'static';
+    document.body.removeEventListener('touchmove', function () {
+    });
+}

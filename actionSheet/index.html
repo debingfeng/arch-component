@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>actionSheet</title>
-    <!--    <link rel="stylesheet" href="../common/omreset.css">-->
+    <link rel="stylesheet" href="../common/omreset.css">
     <style>
         .actionsheet {
             position: absolute;
@@ -15,6 +15,7 @@
             height: auto;
             background-color: #f1f1f1;
             animation: fadeInUp 350ms;
+            animation-fill-mode: forwards;
         }
 
         .actionsheet .actionsheet-menu,
@@ -65,8 +66,19 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.6);
             animation: fadeIn 350ms;
+            animation-fill-mode: forwards;
             overflow: hidden;
             z-index: 1000;
+        }
+
+        .fadeOutDown {
+            animation: fadeOutDown 350ms;
+            animation-fill-mode: forwards;
+        }
+
+        .fadeOut {
+            animation: fadeOut 350ms;
+            animation-fill-mode: forwards;
         }
 
         @keyframes fadeInUp {
@@ -78,12 +90,30 @@
             }
         }
 
+        @keyframes fadeOutDown {
+            from {
+                bottom: 0;
+            }
+            to {
+                bottom: -1000px;
+            }
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
             to {
                 opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
             }
         }
     </style>
@@ -111,7 +141,6 @@
                 {
                     name: '取消',
                     callback: () => {
-                        remove();
                     }
                 }
             ],
@@ -124,7 +153,7 @@
         };
 
         /**
-         * 渲染item元素并添加事件
+         * render item element and add event
          * @param arr
          * @param tag
          * @param className
@@ -136,68 +165,83 @@
                 var item = arr[i];
                 $section.innerText = item.name;
                 tag.appendChild($section);
-                if (!item.callback) {
-                    return;
-                }
                 $section.addEventListener('click', function () {
-                    item.callback.apply(this, item)
+                    item.callback && item.callback.apply(this, item);
+                    remove();
                 });
 
             }
         }
 
         /**
-         * 创建ActionSheet
+         * create ActionSheet
          * @returns {*}
          */
         function createActionSheet(actionConfig) {
             var $overLayer = document.querySelector('.over-layer');
             if ($overLayer) {
-                return console.log('actionsheet already exist');
+                return console.error('actionsheet already exist');
             }
             var $layer = createElement('div'),
                 $actionSheet = createElement('div'),
                 $menuSheet = createElement('div'),
                 $action = createElement('div');
 
-            addClass($layer, 'over-layer');
-            addClass($layer, 'xtc-actionsheet');
+            addClass($layer, 'over-layer xtc-actionsheet');
             addClass($actionSheet, 'actionsheet');
             addClass($menuSheet, 'actionsheet-menu');
             addClass($action, 'actionsheet-action');
-            // 渲染menu
+            // render menu elements
             if (actionConfig.menu.length < 1) {
                 throw 'actionMenu is not empty!';
             }
             renderOption(actionConfig.menu, $menuSheet, 'actionsheet-menu-item');
             $actionSheet.appendChild($menuSheet);
-            // 渲染action操作
+
+            // render action elements
             if (actionConfig.action.length < 1) {
                 throw 'actionMenu is not empty!';
             }
             renderOption(actionConfig.action, $action, 'actionsheet-action-item');
             $actionSheet.appendChild($action);
             $layer.appendChild($actionSheet);
+
+            // click non-button to close actionsheet
+            $layer.addEventListener('click', function (event) {
+                var target = event.target;
+                if (/xtc-actionsheet/g.test(target.className)) {
+                    remove();
+                    return false;
+                }
+            });
             return $layer;
         }
 
         /**
-         * 添加actionsheet
+         * Add Actionsheet
          * @param config
          */
         function open(config) {
-            var actionSheetConfig = extend(initConfig, config);
+            var actionSheetConfig = expand(initConfig, config);
             var actionSheet = createActionSheet(actionSheetConfig);
+            stopScroll();
             document.body.appendChild(actionSheet);
         }
 
         /**
-         * 移除actionsheet
+         * remove actionsheet
          */
         function remove() {
             var $actionSheetContainer = document.querySelector('.xtc-actionsheet');
             if ($actionSheetContainer) {
-                document.body.removeChild($actionSheetContainer);
+                addClass($actionSheetContainer, 'fadeOut');
+                var $actionsheet = $actionSheetContainer.querySelector('.actionsheet');
+                addClass($actionsheet, 'fadeOutDown');
+                setTimeout(function () {
+                    document.body.removeChild($actionSheetContainer);
+                    recoverScroll();
+                }, 350);
+
             }
         }
 

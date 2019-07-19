@@ -64,17 +64,11 @@ var $_loading = (function () {
      */
     var loadLoadingElement = function () {
         var xtcLoading = doc.querySelector(".xtc-load");
-        if (!xtcLoading) {
-            addClass(doc.body, 'noscroll');
-            var loadingElement = createLoader();
-            doc.body.appendChild(loadingElement);
-            doc.addEventListener('touchmove', function(event) {
-                event.preventDefault();
-                return false;
-            })
-        } else {
-            console.error("当前已经有一个loading元素存在");
+        if (xtcLoading) {
+            return console.error('xtcLoading already exist');
         }
+        doc.body.appendChild(createLoader());
+        stopScroll();
     };
     /**
      * 移除loadingHTML元素
@@ -83,9 +77,7 @@ var $_loading = (function () {
         var xtcLoading = doc.querySelector(".xtc-loading");
         if (xtcLoading) {
             doc.body.removeChild(xtcLoading);
-            removeClass(doc.body, 'noscroll');
-            doc.body.removeEventListener('touchmove', function () {});
-
+            recoverScroll();
         }
     };
     return {
