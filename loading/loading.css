@@ -32,7 +32,7 @@
 .xtc-load-container .xtc-loader {
     box-sizing: border-box!important;
     margin: 30px auto;
-    font-size: 1px;
+    font-size: 10px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
