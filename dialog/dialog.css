@@ -1,0 +1,110 @@
+.over-layer {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    animation: fadeIn 350ms;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+    min-height: 180px;
+    max-height: 250px;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+.dialog-container .dialog-title,
+.dialog-container .dialog-content,
+.dialog-container .dialog-footer {
+    box-sizing: inherit;
+}
+
+.dialog-title {
+    height: 27.778%;
+    padding: 4.5% 0;
+    font-size: 18px;
+    color: #000000;
+    text-align: center;
+    text-shadow: 0 0 1px rgb(0, 0, 0);
+}
+
+.dialog-content {
+    flex: 1;
+    padding: 0 6% 4.667%;
+    font-size: 15px;
+    color: #333333;
+    text-align: center;
+}
+
+.dialog-footer {
+    position: relative;
+    display: flex;
+    height: 45px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.dialog-btn {
+    flex: 1;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 17px;
+    color: #333333;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.dialog-btn:active {
+    opacity: 0.8;
+}
+
+.dialog-btn-confirm {
+    border-bottom-right-radius: 12px;
+}
+
+.dialog-btn-cancel {
+    position: relative;
+    border-bottom-left-radius: 12px;
+}
+
+.dialog-btn-cancel:after {
+    content: " ";
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #dfdfdf;
+    transform: scaleX(0.5);
+}
+
+.dialog-footer:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #dfdfdf;
+    color: #d5d5d6;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}

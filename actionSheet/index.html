@@ -6,251 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>actionSheet</title>
     <link rel="stylesheet" href="../common/omreset.css">
-    <style>
-        .actionsheet {
-            position: absolute;
-            bottom: 0;
-            box-sizing: border-box;
-            width: 100%;
-            height: auto;
-            background-color: #f1f1f1;
-            animation: fadeInUp 350ms;
-            animation-fill-mode: forwards;
-        }
-
-        .actionsheet .actionsheet-menu,
-        .actionsheet .actionsheet-action {
-            position: relative;
-            box-sizing: inherit;
-        }
-
-        .actionsheet .actionsheet-action {
-            margin-top: 10px;
-        }
-
-        .actionsheet-menu .actionsheet-menu-item,
-        .actionsheet-action .actionsheet-action-item {
-            position: relative;
-            height: 50px;
-            width: 100%;
-            text-align: center;
-            word-wrap: break-word;
-            word-break: break-all;
-            line-height: 50px;
-            color: black;
-            background-color: white;
-        }
-
-        .actionsheet-menu .actionsheet-menu-item:after,
-        .actionsheet-action .actionsheet-action-item:after {
-            position: absolute;
-            bottom: 0;
-            content: " ";
-            display: block;
-            height: 1px;
-            width: 100%;
-            background-color: #dfdfdf;
-            transform: scaleY(0.5);
-        }
-
-        .actionsheet-menu .actionsheet-menu-item:last-of-type:after,
-        .actionsheet-action .actionsheet-action-item:last-of-type:after {
-            display: none;
-        }
-
-        .over-layer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            animation: fadeIn 350ms;
-            animation-fill-mode: forwards;
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .fadeOutDown {
-            animation: fadeOutDown 350ms;
-            animation-fill-mode: forwards;
-        }
-
-        .fadeOut {
-            animation: fadeOut 350ms;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                bottom: -1000px;
-            }
-            to {
-                bottom: 0;
-            }
-        }
-
-        @keyframes fadeOutDown {
-            from {
-                bottom: 0;
-            }
-            to {
-                bottom: -1000px;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../common/util.css">
+    <link rel="stylesheet" href="../common/section.css">
+    <link rel="stylesheet" href="actionSheet.css">
 </head>
 <body>
-<button type="button" id="open">打开</button>
 
-<!--    <div class="over-layer xtc-actionsheet">-->
-<!--        <div class="actionsheet fadeInUp">-->
-<!--            <div class="actionsheet-menu">-->
-<!--                <section class="actionsheet-menu-item">流量安装</section>-->
-<!--                <section class="actionsheet-menu-item">WiFi安装</section>-->
-<!--            </div>-->
-<!--            <div class="actionsheet-action">-->
-<!--                <section class="actionsheet-action-item">取消</section>-->
-<!--                <section class="actionsheet-action-item">确认</section>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+<div class="container">
+    <div class="section-group">
+        <h2 class="secondary-title">ActionSheet框</h2>
+        <section class="section-item">
+            <strong class="section-item-title">ActionSheet</strong>
+            <button type="button" id="open">打开ActionSheet</button>
+        </section>
+    </div>
+
+</div>
+<!--    <div class="over-layer xtc-actionsheet">
+        <div class="actionsheet fadeInUp">
+            <div class="actionsheet-menu">
+                <section class="actionsheet-menu-item">流量安装</section>
+                <section class="actionsheet-menu-item">WiFi安装</section>
+            </div>
+            <div class="actionsheet-action">
+                <section class="actionsheet-action-item">取消</section>
+                <section class="actionsheet-action-item">确认</section>
+            </div>
+        </div>
+    </div>-->
 <script src="../utils/util.js"></script>
+<script src="actionSheet.js"></script>
 <script>
-    var $_actionSheet = (function () {
-        var initConfig = {
-            action: [
-                {
-                    name: '取消',
-                    callback: () => {
-                    }
-                }
-            ],
-            menu: [
-                // {
-                //     name: '取消',
-                //     callback: () => {}
-                // }
-            ]
-        };
 
-        /**
-         * render item element and add event
-         * @param arr
-         * @param tag
-         * @param className
-         */
-        function renderOption(arr, tag, className) {
-            for (var i = 0, l = arr.length; i < l; i++) {
-                var $section = createElement('section');
-                addClass($section, className);
-                var item = arr[i];
-                $section.innerText = item.name;
-                tag.appendChild($section);
-                $section.addEventListener('click', function () {
-                    item.callback && item.callback.apply(this, item);
-                    remove();
-                });
-
-            }
-        }
-
-        /**
-         * create ActionSheet
-         * @returns {*}
-         */
-        function createActionSheet(actionConfig) {
-            var $overLayer = document.querySelector('.over-layer');
-            if ($overLayer) {
-                return console.error('actionsheet already exist');
-            }
-            var $layer = createElement('div'),
-                $actionSheet = createElement('div'),
-                $menuSheet = createElement('div'),
-                $action = createElement('div');
-
-            addClass($layer, 'over-layer xtc-actionsheet');
-            addClass($actionSheet, 'actionsheet');
-            addClass($menuSheet, 'actionsheet-menu');
-            addClass($action, 'actionsheet-action');
-            // render menu elements
-            if (actionConfig.menu.length < 1) {
-                throw 'actionMenu is not empty!';
-            }
-            renderOption(actionConfig.menu, $menuSheet, 'actionsheet-menu-item');
-            $actionSheet.appendChild($menuSheet);
-
-            // render action elements
-            if (actionConfig.action.length < 1) {
-                throw 'actionMenu is not empty!';
-            }
-            renderOption(actionConfig.action, $action, 'actionsheet-action-item');
-            $actionSheet.appendChild($action);
-            $layer.appendChild($actionSheet);
-
-            // click non-button to close actionsheet
-            $layer.addEventListener('click', function (event) {
-                var target = event.target;
-                if (/xtc-actionsheet/g.test(target.className)) {
-                    remove();
-                    return false;
-                }
-            });
-            return $layer;
-        }
-
-        /**
-         * Add Actionsheet
-         * @param config
-         */
-        function open(config) {
-            var actionSheetConfig = expand(initConfig, config);
-            var actionSheet = createActionSheet(actionSheetConfig);
-            stopScroll();
-            document.body.appendChild(actionSheet);
-        }
-
-        /**
-         * remove actionsheet
-         */
-        function remove() {
-            var $actionSheetContainer = document.querySelector('.xtc-actionsheet');
-            if ($actionSheetContainer) {
-                addClass($actionSheetContainer, 'fadeOut');
-                var $actionsheet = $actionSheetContainer.querySelector('.actionsheet');
-                addClass($actionsheet, 'fadeOutDown');
-                setTimeout(function () {
-                    document.body.removeChild($actionSheetContainer);
-                    recoverScroll();
-                }, 350);
-
-            }
-        }
-
-        return {
-            open: open,
-            remove: remove
-        }
-
-    })();
     document.getElementById('open').addEventListener('click', function () {
         $_actionSheet.open({
             menu: [

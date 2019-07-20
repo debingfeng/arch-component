@@ -53,8 +53,12 @@ var expand = function (origin,target){
  */
 function stopScroll() {
     // 防止页面股东
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'relative';
+    var docBody = document.body;
+
+    addClass(document.firstElementChild,'wh-full');
+    addClass(docBody,'wh-full');
+    docBody.style.overflow = 'hidden';
+    docBody.style.position = 'relative';
     document.addEventListener('touchmove', function (event) {
         event.preventDefault();
         return false;
@@ -65,8 +69,11 @@ function stopScroll() {
  * Unblock page scrolling
  */
 function recoverScroll() {
-    document.body.style.overflow = 'visible';
-    document.body.style.position = 'static';
+    var docBody = document.body;
+    removeClass(document.firstElementChild,'wh-full');
+    removeClass(docBody,'wh-full');
+    docBody.style.overflow = 'visible';
+    docBody.style.position = 'static';
     document.body.removeEventListener('touchmove', function () {
     });
 }

@@ -6,23 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>JS-loading</title>
     <link rel="stylesheet" href="../common/omreset.css">
+    <link rel="stylesheet" href="../common/util.css">
+    <link rel="stylesheet" href="../common/section.css">
     <link rel="stylesheet" href="loading.css">
 </head>
 <body>
-<img src="./imgs/loading.gif" alt=""/>
 
-<div class="">
-    <button type="button" id="open">打开loading</button>
-    <button type="button" id="close">关闭loading</button>
+<div class="container">
+    <div class="section-group">
+        <h2 class="secondary-title">loading框</h2>
+        <section class="section-item">
+            <strong class="section-item-title">页面loading</strong>
+            <button type="button" id="open">打开loading</button>
+        </section>
+        <section class="section-item">
+            <strong class="section-item-title">局部loading</strong>
+            <section>
+                <img src="./imgs/loading.gif" alt=""/>
+            </section>
+        </section>
+
+    </div>
 </div>
 
-<!--<div class="over-layer">-->
-<!--    <div class="xtc-load-container">-->
-<!--        <div class="loader"></div>-->
-<!--        <div class="load-content">加载中...</div>-->
-<!--    </div>-->
-<!--</div>-->
 
+<!--<div class="over-layer">
+    <div class="xtc-load-container">
+        <div class="xtc-loader"></div>
+        <div class="load-content">加载中...</div>
+    </div>
+</div>-->
+
+<script src="../utils/util.js"></script>
 <script src="loading.js"></script>
 <script>
     let $ = function (id) {
@@ -30,14 +45,10 @@
     };
     $("open").addEventListener("click", function () {
         $_loading.show();
+        setTimeout(function () {
+            $_loading.remove();
+        }, 5000)
     });
-    $("close").addEventListener("click", function () {
-        $_loading.remove();
-    });
-
-    // setTimeout(()=>{
-    //     $_loading.remove();
-    // },3000);
 
 </script>
 </body>

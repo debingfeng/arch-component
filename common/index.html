@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>页面标题</title>
+    <meta charset="utf-8">
+    <!--设定缩放比，是否可缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!--安全策略设置-->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *;frame-src gap://* jsbridge://* wvjbscheme://*;style-src 'self' http://*.okii.com https://*.okii.com 'unsafe-inline'; script-src 'unsafe-inline' 'unsafe-eval' http://*.okii.com http://www.omwteam.com https://*.omwteam.com https://www.omwteam.com;">
+    <!---->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!--设置导航栏的风格-->
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!--避免IOS上数字和邮箱可操作-->
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <!--设置缓存处理方式-->
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="./omreset.css">
+    <link rel="stylesheet" href="./util.css">
+    <link rel="stylesheet" href="./section.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    <h2 class="secondary-title">公共样式说明</h2>
+    <div class="section-group">
+        <h2 class="secondary-title">全局重置样式</h2>
+        <section class="section-item">
+            <a href="./omreset.css" target="_blank">点击查看源码</a>
+        </section>
+        <h2 class="secondary-title">全局辅助样式</h2>
+        <section class="section-item">
+
+            <p>
+            <pre>限制宽度容器: <code>container</code></pre>
+            </p>
+
+            <pre>
+                 <p>单行超出省略: <code>ellipsis</code></p>
+            </pre>
+            <pre>
+                <p>多行超出省略: <code>multi-ellipsis</code></p>
+            </pre>
+            <pre>
+                <p>宽高百分之百: <code> wh-full</code></p>
+            </pre>
+
+        </section>
+    </div>
+
+</div>
+<!-- built files will be auto injected -->
+
+</body>
+</html>

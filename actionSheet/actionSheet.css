@@ -1,0 +1,109 @@
+.actionsheet {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    background-color: #f1f1f1;
+    animation: fadeInUp 350ms;
+    animation-fill-mode: forwards;
+}
+
+.actionsheet .actionsheet-menu,
+.actionsheet .actionsheet-action {
+    position: relative;
+    box-sizing: inherit;
+}
+
+.actionsheet .actionsheet-action {
+    margin-top: 10px;
+}
+
+.actionsheet-menu .actionsheet-menu-item,
+.actionsheet-action .actionsheet-action-item {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-all;
+    line-height: 50px;
+    color: black;
+    background-color: white;
+}
+
+.actionsheet-menu .actionsheet-menu-item:after,
+.actionsheet-action .actionsheet-action-item:after {
+    position: absolute;
+    bottom: 0;
+    content: " ";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #dfdfdf;
+    transform: scaleY(0.5);
+}
+
+.actionsheet-menu .actionsheet-menu-item:last-of-type:after,
+.actionsheet-action .actionsheet-action-item:last-of-type:after {
+    display: none;
+}
+
+.over-layer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    animation: fadeIn 350ms;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.fadeOutDown {
+    animation: fadeOutDown 350ms;
+    animation-fill-mode: forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 350ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        bottom: -1000px;
+    }
+    to {
+        bottom: 0;
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        bottom: 0;
+    }
+    to {
+        bottom: -1000px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
