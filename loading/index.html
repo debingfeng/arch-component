@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>JS-loading</title>
-    <link rel="stylesheet" href="../common/omreset.css">
+<!--    <link rel="stylesheet" href="../common/omreset.css">-->
     <link rel="stylesheet" href="../common/util.css">
     <link rel="stylesheet" href="../common/section.css">
     <link rel="stylesheet" href="loading.css">
@@ -33,7 +33,7 @@
 <!--<div class="over-layer">
     <div class="xtc-load-container">
         <div class="xtc-loader"></div>
-        <div class="load-content">加载中...</div>
+        <span class="load-content">加载中...</span>
     </div>
 </div>-->
 
@@ -45,9 +45,9 @@
     };
     $("open").addEventListener("click", function () {
         $_loading.show();
-        setTimeout(function () {
-            $_loading.remove();
-        }, 5000)
+        // setTimeout(function () {
+        //     $_loading.remove();
+        // }, 5000)
     });
 
 </script>

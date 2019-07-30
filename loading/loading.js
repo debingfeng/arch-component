@@ -37,34 +37,29 @@ var $_loading = (function () {
     };
 
     /**
+     * prevent default
+     * @param e
+     */
+    function move(e) {
+        e.preventDefault()
+    }
+
+    /**
      * Block page scrolling
      */
     function stopScroll() {
-        // 防止页面股东
-        var docBody = document.body;
-
-        addClass(document.firstElementChild, 'wh-full');
-        addClass(docBody, 'wh-full');
-        docBody.style.overflow = 'hidden';
-        docBody.style.position = 'relative';
-        document.addEventListener('touchmove', function (event) {
-            event.preventDefault();
-            return false;
-        });
+        document.body.style.overflow = 'hidden';
+        document.addEventListener("touchmove", move, false);//禁止页面滑动
     }
 
     /**
      * Unblock page scrolling
      */
     function recoverScroll() {
-        var docBody = document.body;
-        removeClass(document.firstElementChild, 'wh-full');
-        removeClass(docBody, 'wh-full');
-        docBody.style.overflow = 'visible';
-        docBody.style.position = 'static';
-        document.body.removeEventListener('touchmove', function () {
-        });
+        document.body.style.overflow = '';//出现滚动条
+        document.removeEventListener("touchmove", move, false);
     }
+
 
     /**
      * 创建loadingHTML元素
@@ -74,7 +69,7 @@ var $_loading = (function () {
 
         var loadContainer = createElement("div"),
             loader = createElement("div"),
-            loadContent = createElement("p");
+            loadContent = createElement("span");
 
         addClass(wrapper, 'over-layer xtc-loading');
 

@@ -1,5 +1,5 @@
 /*! omReset.css v1.0.0 | MIT License | github.com/omwteam/omReset.css */
-html, body, p, ol, ul, textarea, h1, h2, h3, h4 {
+html, body, p, ol, ul, h1, h2, h3, h4 {
     margin: 0;
     padding: 0;
 }
@@ -22,8 +22,6 @@ html {
 body {
     -webkit-text-size-adjust: none;
     -webkit-overflow-scrolling: touch;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
     font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
     min-width: 320px;
     max-width: 760px;
@@ -34,10 +32,6 @@ article, nav, header, section, aside, footer,
 summary, details, figcaption, figure,
 hgroup, menu, canvas {
     display: block;
-}
-
-button, input, select, textarea {
-    margin: 0;
 }
 
 /**

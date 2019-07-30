@@ -39,10 +39,10 @@
     position: relative;
     -webkit-animation: load5 1.1s infinite ease;/*默认是loader5*/
     animation: load5 1.1s infinite ease;
-    /*transform: scale(0.5);*/
 }
 
 .xtc-load-container .load-content {
+    display: inline-block!important;
     font-size: 18px;
     color: #ffffff;
     text-align: center;

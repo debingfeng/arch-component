@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function imgLoader(src, callback) {
+        let $img = new Image();
+        $img.src = src;
+        $img.onload = function () {
+            callback($img)
+        };
+        $img.onerror = function () {
+            callback(null);
+        };
+    }
+
+    function loadImgs(imgList, callback, defaultImg = '') {
+        if (!Array.isArray(imgList)) {
+            return;
+        }
+        if (imgList.length < 1) {
+            return;
+        }
+        let l = imgList.length,
+            list = [];
+        for (let i = 0; i < l; i++) {
+            ((src) => {
+                imgLoader(src, function (img) {
+                    if (img) {
+                        list.push(img);
+                    }
+                })
+            })(imgList[i])
+        }
+
+    }
+</script>
+</body>
+</html>
