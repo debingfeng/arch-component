@@ -8,37 +8,82 @@
 </head>
 <body>
 <script>
-    function imgLoader(src, callback) {
-        let $img = new Image();
-        $img.src = src;
-        $img.onload = function () {
-            callback($img)
-        };
-        $img.onerror = function () {
-            callback(null);
-        };
-    }
+    var n = 1;
+    var m = 2;
+    m = n++;
+    console.log(n, m);
 
-    function loadImgs(imgList, callback, defaultImg = '') {
+
+    function loadImgs(imgList, callback) {
+
         if (!Array.isArray(imgList)) {
             return;
         }
+
         if (imgList.length < 1) {
             return;
         }
+
+        /**
+         * 图片加载
+         * @param src
+         * @param callback
+         */
+        var imgLoader = function (src, callback) {
+            let $img = new Image();
+            $img.src = src;
+            $img.onload = function () {
+                callback($img)
+            };
+            $img.onerror = function (e) {
+                console.error(e.type)
+            }
+        };
+
+        /**
+         * 闭包计数
+         * @return {function(): number}
+         */
+        var countNum = function () {
+            let num = 0;
+            return function () {
+                return ++num;
+            }
+        };
+
         let l = imgList.length,
-            list = [];
+            list = [],
+            counter = countNum();
+
+        /**
+         * 循环加载
+         */
         for (let i = 0; i < l; i++) {
             ((src) => {
                 imgLoader(src, function (img) {
+                    console.log(img);
                     if (img) {
                         list.push(img);
+                    }
+                    if (counter() === list.length) {
+                        callback(list);
                     }
                 })
             })(imgList[i])
         }
 
     }
+
+    var imgList = ['./imgs/banner.png', './imgs/banner03.png', './imgs/banner04.png'];
+
+    loadImgs(imgList, function (list) {
+        console.log(list);
+        for (let i = 0; i < list.length; i++) {
+            list[i].className = 'dsaasdsd';
+            document.body.appendChild(list[i]);
+        }
+    })
+
 </script>
 </body>
 </html>

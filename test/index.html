@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+
+
     <title>Title</title>
     <style>
         * {
@@ -9,17 +14,50 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         .box {
             width: 200px;
             height: 150px;
             border-radius: 10% 10%;
             background-color: #0dc5c1;
         }
+
+        .container {
+            width: 960px;
+            height: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bottom-triangle {
+            position: relative;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-width: 10px 12px 0;
+            border-style: solid;
+            border-color: #D9DADC transparent transparent;
+        }
+        .bottom-triangle:after {
+            position: absolute;
+            top: -13px;
+            left: -11px;
+            content: ' ';
+
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-width: 11px 13px 0;
+            border-style: solid;
+            border-color: #F4F6FA transparent transparent;
+        }
     </style>
 </head>
 <body>
-<span style="background-color: red;display: block;">
-    <img src="./banner04.png" alt="" style="display: block;">
-</span>
+<div class="container">
+    <div class="bottom-triangle"></div>
+</div>
 </body>
 </html>
