@@ -23,15 +23,17 @@ var $_actionSheet = (function () {
      */
     function renderOption(arr, tag, className) {
         for (var i = 0, l = arr.length; i < l; i++) {
-            var $section = createElement('section');
-            addClass($section, className);
             var item = arr[i];
-            $section.innerText = item.name;
-            tag.appendChild($section);
-            $section.addEventListener('click', function () {
-                item.callback && item.callback.apply(this, item);
-                remove();
-            });
+            (function (item) {
+                var $section = createElement('section');
+                addClass($section, className);
+                $section.innerText = item.name;
+                tag.appendChild($section);
+                $section.addEventListener('click', function () {
+                    item.callback && item.callback.apply(this, item);
+                    remove();
+                });
+            })(item)
 
         }
     }

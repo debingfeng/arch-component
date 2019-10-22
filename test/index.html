@@ -57,7 +57,68 @@
 </head>
 <body>
 <div class="container">
+    <img src="http://storeshow-qn.okii.com/01a750617e15451cb980093defdf51d4?imageView2/1/w/620/h/1100" alt="">
     <div class="bottom-triangle"></div>
 </div>
+<script src="vconsole.min.js"></script>
+<script>window.VConsole = new VConsole()</script>
+<script>
+    var buildData = function (n){
+        var i = 0,
+            arr = [];
+        for(i ; i < n; i++) {
+            arr.push(i);
+        }
+        return arr;
+    };
+    var arr = buildData(10000);
+    console.time('first');
+    var a = arr[0]
+    console.timeEnd('first');
+    console.time('last');
+    var b = arr[9999]
+    console.timeEnd('last');
+
+    class TapClass {
+        constructor(element,callback = ()=>{},isCapture = false){
+
+            // 1.单击只能有一根手指
+            // 2.按下的时间不能太久
+            // 3.保证没有滑动操作（或者在范围之内）
+
+            // 校验并设置参数
+            let isTap,
+                touchStartTime,
+                touchEndTime,
+                duration,
+                Range;
+
+            this.element = element;
+
+            this.callback = callback;
+
+            this.isCapture = isCapture;
+
+        }
+        init(){
+
+            this.element.addEventListener("touchstart", this.tapStartHandle);
+
+            this.element.addEventListener("touchmove", this.tapMoveHandle);
+
+            this.element.addEventListener("touchend", this.tapEndHandle);
+
+        }
+        tapStartHandle(){
+
+        }
+        tapMoveHandle(){
+
+        }
+        tapEndHandle(){
+
+        }
+    }
+</script>
 </body>
 </html>

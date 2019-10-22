@@ -1,3 +1,7 @@
+.top-radius-12 {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
 .actionsheet {
     position: absolute;
     bottom: 0;
@@ -7,12 +11,16 @@
     background-color: #f1f1f1;
     animation: fadeInUp 350ms;
     animation-fill-mode: forwards;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
 }
 
 .actionsheet .actionsheet-menu,
 .actionsheet .actionsheet-action {
     position: relative;
     box-sizing: inherit;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
 }
 
 .actionsheet .actionsheet-action {
@@ -21,13 +29,16 @@
 
 .actionsheet-menu .actionsheet-menu-item,
 .actionsheet-action .actionsheet-action-item {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
     position: relative;
-    height: 50px;
+    height: 56px;
     width: 100%;
     text-align: center;
     word-wrap: break-word;
     word-break: break-all;
-    line-height: 50px;
+    line-height: 56px;
+    font-size: 16px;
     color: black;
     background-color: white;
 }
