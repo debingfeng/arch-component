@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>一像素解决方案</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 42px;
+            border-radius: 12px;
+            outline: none;
+            border: none;
+            /*background-color: transparent;*/
+        }
+        button:active {
+            border: none;
+        }
+
+        .box-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .flex {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 15px;
+
+        }
+        .mg-b15 {
+            margin-bottom: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="hairline.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mg-b15">移动端一像素解决方案</h2>
+    <button type="button" class="btn hairline-all-round mg-b15">按钮</button>
+    <div class="box-list">
+        <div class="flex hairline-top">上边</div>
+        <div class="flex hairline-left">左边</div>
+        <div class="flex hairline-bottom">下边</div>
+        <div class="flex hairline-right">右边</div>
+        <div class="flex hairline-all">四边</div>
+        <div class="flex hairline-all-round">四边+圆角</div>
+    </div>
+</div>
+
+
+</body>
+</html>

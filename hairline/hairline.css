@@ -1,0 +1,57 @@
+/**
+ * 1像素解决方案
+ */
+[class*='hairline']::after {
+    position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    border: 0 solid blueviolet;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+}
+
+.hairline,
+.hairline-top,
+.hairline-left,
+.hairline-right,
+.hairline-bottom,
+.hairline-all,
+.hairline-all-round,
+.hairline-tb {
+    position: relative;
+}
+
+.hairline-top::after {
+    border-top-width: 1px;
+}
+
+.hairline-left::after {
+    border-left-width: 1px;
+}
+
+.hairline-right::after {
+    border-right-width: 1px;
+}
+
+.hairline-bottom::after {
+    border-bottom-width: 1px;
+}
+
+.hairline-tb::after,
+.hairline-tb::after {
+    border-width: 1px 0;
+}
+
+.hairline-all::after {
+    border-width: 1px;
+}
+
+.hairline-all-round::after {
+    border-width: 1px;
+    border-radius: 24px;
+}
